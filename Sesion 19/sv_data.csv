@@ -1,0 +1,126 @@
+,Country,Obesity%,Year,Sex
+123,El Salvador,2.9,1975,Both Sexes
+124,El Salvador,8.4,1975,Male
+120,El Salvador,3.1,1976,Both Sexes
+121,El Salvador,8.7,1976,Male
+122,El Salvador,5.8,1976,Female
+117,El Salvador,3.3,1977,Both Sexes
+118,El Salvador,9.0,1977,Male
+119,El Salvador,6.0,1977,Female
+114,El Salvador,3.4,1978,Both Sexes
+115,El Salvador,9.3,1978,Male
+116,El Salvador,6.2,1978,Female
+111,El Salvador,3.6,1979,Both Sexes
+112,El Salvador,9.6,1979,Male
+113,El Salvador,6.5,1979,Female
+108,El Salvador,3.8,1980,Both Sexes
+109,El Salvador,10.0,1980,Male
+110,El Salvador,6.8,1980,Female
+105,El Salvador,4.0,1981,Both Sexes
+106,El Salvador,10.3,1981,Male
+107,El Salvador,7.1,1981,Female
+102,El Salvador,4.2,1982,Both Sexes
+103,El Salvador,10.7,1982,Male
+104,El Salvador,7.4,1982,Female
+99,El Salvador,4.5,1983,Both Sexes
+100,El Salvador,11.1,1983,Male
+101,El Salvador,7.7,1983,Female
+96,El Salvador,4.7,1984,Both Sexes
+97,El Salvador,11.5,1984,Male
+98,El Salvador,8.0,1984,Female
+93,El Salvador,5.0,1985,Both Sexes
+94,El Salvador,11.9,1985,Male
+95,El Salvador,8.3,1985,Female
+90,El Salvador,5.2,1986,Both Sexes
+91,El Salvador,12.3,1986,Male
+92,El Salvador,8.6,1986,Female
+87,El Salvador,5.5,1987,Both Sexes
+88,El Salvador,12.7,1987,Male
+89,El Salvador,9.0,1987,Female
+84,El Salvador,5.8,1988,Both Sexes
+85,El Salvador,13.2,1988,Male
+86,El Salvador,9.3,1988,Female
+81,El Salvador,6.1,1989,Both Sexes
+82,El Salvador,13.6,1989,Male
+83,El Salvador,9.7,1989,Female
+78,El Salvador,6.4,1990,Both Sexes
+79,El Salvador,14.0,1990,Male
+80,El Salvador,10.1,1990,Female
+75,El Salvador,6.7,1991,Both Sexes
+76,El Salvador,14.5,1991,Male
+77,El Salvador,10.5,1991,Female
+72,El Salvador,7.0,1992,Both Sexes
+73,El Salvador,15.0,1992,Male
+74,El Salvador,10.9,1992,Female
+69,El Salvador,7.4,1993,Both Sexes
+70,El Salvador,15.5,1993,Male
+71,El Salvador,11.3,1993,Female
+66,El Salvador,7.8,1994,Both Sexes
+67,El Salvador,16.1,1994,Male
+68,El Salvador,11.8,1994,Female
+63,El Salvador,8.2,1995,Both Sexes
+64,El Salvador,16.6,1995,Male
+65,El Salvador,12.3,1995,Female
+60,El Salvador,8.7,1996,Both Sexes
+61,El Salvador,17.2,1996,Male
+62,El Salvador,12.8,1996,Female
+57,El Salvador,9.1,1997,Both Sexes
+58,El Salvador,17.8,1997,Male
+59,El Salvador,13.3,1997,Female
+54,El Salvador,9.6,1998,Both Sexes
+55,El Salvador,18.4,1998,Male
+56,El Salvador,13.9,1998,Female
+51,El Salvador,10.1,1999,Both Sexes
+52,El Salvador,19.0,1999,Male
+53,El Salvador,14.4,1999,Female
+48,El Salvador,10.6,2000,Both Sexes
+49,El Salvador,19.7,2000,Male
+50,El Salvador,15.0,2000,Female
+45,El Salvador,11.1,2001,Both Sexes
+46,El Salvador,20.3,2001,Male
+47,El Salvador,15.6,2001,Female
+42,El Salvador,11.6,2002,Both Sexes
+43,El Salvador,20.9,2002,Male
+44,El Salvador,16.1,2002,Female
+39,El Salvador,12.1,2003,Both Sexes
+40,El Salvador,21.5,2003,Male
+41,El Salvador,16.7,2003,Female
+36,El Salvador,12.6,2004,Both Sexes
+37,El Salvador,22.1,2004,Male
+38,El Salvador,17.3,2004,Female
+33,El Salvador,13.1,2005,Both Sexes
+34,El Salvador,22.6,2005,Male
+35,El Salvador,17.8,2005,Female
+30,El Salvador,13.5,2006,Both Sexes
+31,El Salvador,23.2,2006,Male
+32,El Salvador,18.4,2006,Female
+27,El Salvador,14.0,2007,Both Sexes
+28,El Salvador,23.8,2007,Male
+29,El Salvador,18.9,2007,Female
+24,El Salvador,14.5,2008,Both Sexes
+25,El Salvador,24.4,2008,Male
+26,El Salvador,19.5,2008,Female
+21,El Salvador,15.1,2009,Both Sexes
+22,El Salvador,24.9,2009,Male
+23,El Salvador,20.0,2009,Female
+18,El Salvador,15.6,2010,Both Sexes
+19,El Salvador,25.5,2010,Male
+20,El Salvador,20.6,2010,Female
+15,El Salvador,16.1,2011,Both Sexes
+16,El Salvador,26.1,2011,Male
+17,El Salvador,21.1,2011,Female
+12,El Salvador,16.6,2012,Both Sexes
+13,El Salvador,26.6,2012,Male
+14,El Salvador,21.7,2012,Female
+9,El Salvador,17.2,2013,Both Sexes
+10,El Salvador,27.2,2013,Male
+11,El Salvador,22.2,2013,Female
+6,El Salvador,17.7,2014,Both Sexes
+7,El Salvador,27.8,2014,Male
+8,El Salvador,22.8,2014,Female
+3,El Salvador,18.3,2015,Both Sexes
+4,El Salvador,28.4,2015,Male
+5,El Salvador,23.4,2015,Female
+0,El Salvador,18.9,2016,Both Sexes
+1,El Salvador,28.9,2016,Male
+2,El Salvador,24.0,2016,Female
