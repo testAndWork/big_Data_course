@@ -1,0 +1,241 @@
+---
+title: "Análisis Exploratorio"
+output:
+  html_document: default
+  pdf_document: default  
+date: "2023-10-11"
+---
+
+## Análisis Exploratorio
+
+```{r}
+library('ggvis')
+library('tidyverse')
+library('ggplot2')
+library('readr')
+```
+
+## Cargaremos el archivo bike_buyers.csv
+
+```{r}
+df_bikes <- read_csv('bike_buyers.csv', col_names = TRUE)
+head(df_bikes)
+```
+
+```{r}
+class(df_bikes)
+```
+
+```{r}
+str(df_bikes)
+```
+
+```{r}
+summary(df_bikes)
+```
+
+```{r}
+df_bikes$`Marital Status`
+```
+
+## Convertir a factores la variable df_bikes\$`Marital Status`
+
+```{r}
+df_bikes$`Marital Status` <- as.factor(df_bikes$`Marital Status`)
+```
+
+```{r}
+str(df_bikes$`Marital Status`)
+```
+
+### Convertir a factores la variables string para poder analizarlas
+
+```{r}
+df_bikes$Gender <- as.factor(df_bikes$Gender)
+df_bikes$`Home Owner` <- as.factor(df_bikes$`Home Owner`)
+df_bikes$`Purchased Bike` <- as.factor(df_bikes$`Purchased Bike`)
+```
+
+```{r}
+str(df_bikes)
+```
+
+## Verficando cuantos celdas son NA
+
+colSums -\> sumar sobre columnas is.na() -\> cuales son los NA
+
+```{r}
+colSums(is.na(df_bikes))
+```
+
+```{r}
+df_bikes$Education<- as.factor(df_bikes$Education )
+df_bikes$Occupation <- as.factor(df_bikes$Occupation )
+df_bikes$`Commute Distance` <- as.factor(df_bikes$`Commute Distance` )
+df_bikes$Region <- as.factor(df_bikes$Region )
+```
+
+## Datos estadísticos ya con la variables como factores
+
+```{r}
+summary(df_bikes)
+```
+
+```{r}
+str(df_bikes)
+```
+
+```{r}
+library(Hmisc)
+describe(df_bikes)
+```
+
+```{r}
+library(skimr)
+skim(df_bikes)
+```
+##Exploracion de tendencias de atributos faltantes
+
+```{r}
+hist(df_bikes$Income)
+```
+```{r}
+hist(df_bikes$Children,breaks = 18)
+```
+```{r}
+hist(df_bikes$Age )
+```
+## Trabajando con valores NA
+
+como la distribución esta sesgada a la izquierda utilizamos la media para sustituir valores NA
+
+```{r}
+median(na.omit(df_bikes$Income))
+```
+
+```{r}
+median(na.omit(df_bikes$Children))
+```
+
+```{r}
+median(na.omit(df_bikes$Cars))
+```
+
+```{r}
+median(na.omit(df_bikes$Age))
+```
+## Creando un data Frame de respaldo
+```{r}
+df_bclean_na <- df_bikes
+```
+
+## Reemplazando los Na con las medianas
+
+```{r}
+# reemplazando los NA con la mediana en cada una de las columnas 
+
+df_bclean_na$Income[is.na(df_bclean_na$Income)] <- median(na.omit(df_bikes$Income))
+df_bclean_na$Age[is.na(df_bclean_na$Age)] <- median(na.omit(df_bikes$Age))
+```
+
+```{r}
+colSums(is.na((df_bclean_na)))
+```
+```{r}
+mode(df_bclean_na$Children)
+```
+```{r}
+get_mode <- function(x) {                 
+  unique_x <- unique(x)
+  tabulate_x <- tabulate(match(x, unique_x))
+  unique_x[tabulate_x == max(tabulate_x)]
+}
+```
+
+## LLenando los valores Na
+```{r}
+df_bclean_na$Gender[is.na(df_bclean_na$Gender)] <- get_mode(df_bikes$Gender)
+df_bclean_na$Children[is.na(df_bclean_na$Children)] <- get_mode(df_bikes$Children)
+df_bclean_na$`Marital Status`[is.na(df_bclean_na$`Marital Status`)] <- get_mode(df_bikes$`Marital Status`)
+df_bclean_na$`Home Owner`[is.na(df_bclean_na$`Home Owner`)] <- get_mode(df_bikes$`Home Owner`)
+```
+
+```{r}
+colSums(is.na(df_bclean_na))
+```
+```{r}
+hist(df_bclean_na$Cars)
+```
+
+```{r}
+df_bclean_na$Cars[is.na(df_bclean_na$Cars)] <- mean(df_bikes$Cars, na.rm = TRUE)
+colSums(is.na(df_bclean_na))
+```
+
+## Data esta completamente limpio 
+Seguarda en un nuevo dataset sin valores NA
+
+```{r}
+#write_csv(df_bclean_na, 'df_bikes_clean.csv', quote = FALSE)
+```
+
+```{r}
+df_bikes <- df_bclean_na
+```
+
+### Graficos de barra con barplot
+
+```{r}
+counts <- table(df_bikes$Cars, df_bikes$Gender)
+barplot(counts, main = '', legend =rownames(counts))
+```
+
+### Scatter Plot
+
+```{r}
+plot(df_bikes$Income, type = 'p')
+```
+
+## Histograma con ggplot
+```{r}
+ggplot(df_bikes, aes(x = Age)) + geom_histogram()
+```
+## Grafico de densidad
+
+```{r}
+plot(density(df_bikes$Cars), )
+```
+```{r}
+plot(density(df_bikes$Income), )
+```
+
+## Boxplot
+```{r}
+boxplot(df_bikes$Income)
+```
+```{r}
+boxplot(df_bikes[,c(1,4)])
+```
+
+
+## Trabajando con otuliers
+```{r}
+outlie <- boxplot(df_bikes$Income)$out
+print(outlie)
+```
+
+
+### Corrigiendolos
+
+```{r}
+which(df_bikes$Income %in% outlie)
+
+x = df_bikes$Income [!(df_bikes$Income %in% outlie)]
+boxplot(x)
+```
+
+
+
+
+
+

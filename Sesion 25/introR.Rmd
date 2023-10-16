@@ -1,0 +1,239 @@
+---
+title: "Introduccion_a_R"
+author: "José Fuentes"
+date: "2023-10-09"
+output: html_document
+---
+
+# Utilizando R Markdown
+
+```{r}
+print("Hola mundo")
+print('hola mundo')
+
+```
+
+```{r}
+7+5
+```
+
+```{r}
+suma <- 6+7 
+print(suma)
+```
+
+## Operador `c()` , función `seq()`
+
+```{r}
+vec1 <- c(1,2,3,4,5,6,7,8,9,10)
+print(vec1)
+
+vecstr <- c('a','e','i', 'o')
+print(vecstr)
+```
+
+### Sintaxis Función seq: `seq(desde, hasta, incrementos)`
+
+```{r}
+seq(1,10,1)
+```
+
+Ejemplo: Elaborar una secuencia de números pares hasta 30
+
+```{r}
+pares <- seq(2,30, 2)
+pares
+```
+
+## Otro tipo de secuencias
+
+```{r }
+x <- 5:10
+x
+```
+
+```{r}
+y <- 15:20
+y
+```
+
+```{r}
+x*y
+```
+
+## Trabajando con un dataset `mtcars`
+
+```{r}
+library(dplyr)  # dentro de esta libreria se encuentra mtcars
+library(explore)
+```
+
+```{r}
+mtcars %>% explore_tbl()
+```
+
+```{r}
+mtcars %>% describe()
+```
+
+```{r}
+mtcars %>%  explore_all()
+```
+
+## Podemos averiguar la información Grafica por caracteristica?
+
+```{r}
+mtcars %>% explore(gear)
+```
+
+```{r}
+mtcars %>% explore(mpg)
+```
+
+```{r}
+mtcars %>% explore(gear, mpg)
+```
+
+### Relación de las variables
+
+Estableciendo la relación de las variables en `gear, mpg, hp, cyl, am` con respecto a la variable `gear`
+
+```{r}
+mtcars %>% 
+  select(gear, mpg, hp, cyl, am) %>%
+  explore_all(target = gear)
+```
+
+## Alto rendimiento de millas por galón
+
+Definimos una condición para los autos que tengan en su variable mpg \> 25
+
+```{r}
+df_opmpg <- mtcars %>%
+  mutate(highmpg = if_else(mpg > 25, 1, 0, 0)) %>%
+  select(-mpg)
+```
+
+```{r}
+library(magrittr)
+df_opmpg %>% 
+  explore(highmpg) 
+  #color(bar_color = "skyblue",
+   #     text_color = "darkred")
+```
+
+Note que, alrededor de un 18.8% de autos tienen un rendimiento de mpg \> 25.
+
+```{r}
+df_opmpg %>% 
+  select(highmpg, cyl, disp, hp) %>% 
+  explore_all(target = highmpg)
+```
+
+```{r}
+df_opmpg %>% 
+  select(highmpg,drat,wt, qsec, vs) %>% 
+  explore_all(target = highmpg)
+```
+
+```{r}
+df_opmpg %>%  
+  select(highmpg,am, gear, carb) %>% 
+  explore_all(target = highmpg)
+```
+
+Deseamos segmentar la relación entre carros con "***alto o bajo highmpg***"
+
+```{r}
+df_opmpg %>% explain_tree(target = highmpg)
+```
+
+El árbol de decisión nos muestra la variable que esta fuertemente relacionada con el ***highmpg*** dicha varibale es la de peso ***wt***.
+
+### Que significa?
+
+Esto explica que los autos que tienen menos peso, tienden a tener alto rendimiento en millas por galón ***Highmpg***.
+
+```{r}
+df_opmpg %>% explore(wt, target = highmpg)
+```
+
+## Graficar porcentajes de carros con `"highmpg"` en función de su peso.
+
+```{r}
+df_opmpg %>% explore(wt, target = highmpg, split = FALSE )
+```
+
+El gráfico muestra el porcentaje de autos con alto rendimiento en millas
+por galón (mpg). Los autos con alto rendimiento en mpg tienen un peso
+inferior a 2.5. Por lo tanto, el peso (wt) es un buen predictor para un
+alto rendimiento en mpg.
+
+```{r}
+mtcars %>% explore(wt, mpg)
+```
+
+Observamos en la gráfica que mientras mas peso tiene el carro mas bajo es el rendimiento de mpg.
+
+```{r}
+corr <-  cor(mtcars$wt,mtcars$mpg)
+corr
+```
+
+```{r}
+plot(mtcars$wt,mtcars$mpg, main = "GRafico de Wt vs Mpg")
+abline(lm(mpg~wt, data = mtcars), col="red")
+```
+
+## Existe Otra Relación?
+
+### HorsePower
+
+verifiquemos algunas correlaciones de las variables del dataset con HP
+
+```{r}
+mtcars %>% explain_tree(target = hp, minsplit = 9)
+```
+
+```{r}
+mtcars %>% explain_tree(target = hp, minsplit = 11)
+```
+
+```{r}
+mtcars %>% explain_tree(target = hp, minsplit = 15)
+```
+
+se observa que parece haber una correlación muy fuerte entre el peso
+(wt) y "alto rendimiento en millas por galón (mpg)". Los autos con un
+peso bajo son mucho más propensos a tener un "alto rendimiento en mpg".
+
+```{r}
+mtcars %>% explain_tree(target = hp, minsplit = 20)
+```
+
+```{r}
+model <- mtcars %>% 
+  explain_tree(target = hp, minsplit = 11, out = "model")
+model
+```
+
+```{r}
+model <- mtcars %>% 
+  explain_tree(target = hp, minsplit = 15, out = "model")
+model
+```
+
+```{r}
+mtcars %>% 
+  select(hp,cyl, mpg) %>%
+  explore_all(target =  hp)
+```
+
+Observaciones:
+
+1- Los carros de 8 cilindros tienen mayor Horse Power. 2- Los carros con bajo mpg tienen también alto hp.
+
+```{r}
+
+```
+
